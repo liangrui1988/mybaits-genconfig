@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.PayPaytypesMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.PayPaytypes" >
+    <id column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="pay_name" property="payName" jdbcType="VARCHAR" />
+    <result column="income_no" property="incomeNo" jdbcType="VARCHAR" />
+    <result column="outcome_no" property="outcomeNo" jdbcType="VARCHAR" />
+    <result column="pay_enter" property="payEnter" jdbcType="VARCHAR" />
+    <result column="pay_join" property="payJoin" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    typeid, id, pay_name, income_no, outcome_no, pay_enter, pay_join, status, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_paytypes
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from pay_paytypes
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.PayPaytypes" >
+    insert into pay_paytypes (typeid, id, pay_name, 
+      income_no, outcome_no, pay_enter, 
+      pay_join, status, del_flag
+      )
+    values (#{typeid,jdbcType=INTEGER}, #{id,jdbcType=INTEGER}, #{payName,jdbcType=VARCHAR}, 
+      #{incomeNo,jdbcType=VARCHAR}, #{outcomeNo,jdbcType=VARCHAR}, #{payEnter,jdbcType=VARCHAR}, 
+      #{payJoin,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, #{delFlag,jdbcType=CHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.PayPaytypes" >
+    insert into pay_paytypes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payName != null" >
+        pay_name,
+      </if>
+      <if test="incomeNo != null" >
+        income_no,
+      </if>
+      <if test="outcomeNo != null" >
+        outcome_no,
+      </if>
+      <if test="payEnter != null" >
+        pay_enter,
+      </if>
+      <if test="payJoin != null" >
+        pay_join,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payName != null" >
+        #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeNo != null" >
+        #{incomeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outcomeNo != null" >
+        #{outcomeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payEnter != null" >
+        #{payEnter,jdbcType=VARCHAR},
+      </if>
+      <if test="payJoin != null" >
+        #{payJoin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.PayPaytypes" >
+    update pay_paytypes
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payName != null" >
+        pay_name = #{payName,jdbcType=VARCHAR},
+      </if>
+      <if test="incomeNo != null" >
+        income_no = #{incomeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="outcomeNo != null" >
+        outcome_no = #{outcomeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payEnter != null" >
+        pay_enter = #{payEnter,jdbcType=VARCHAR},
+      </if>
+      <if test="payJoin != null" >
+        pay_join = #{payJoin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayPaytypes" >
+    update pay_paytypes
+    set id = #{id,jdbcType=INTEGER},
+      pay_name = #{payName,jdbcType=VARCHAR},
+      income_no = #{incomeNo,jdbcType=VARCHAR},
+      outcome_no = #{outcomeNo,jdbcType=VARCHAR},
+      pay_enter = #{payEnter,jdbcType=VARCHAR},
+      pay_join = #{payJoin,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where typeid = #{typeid,jdbcType=INTEGER}
+  </update>
+</mapper>

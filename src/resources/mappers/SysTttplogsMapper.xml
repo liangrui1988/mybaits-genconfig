@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.SysTttplogsMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.SysTttplogs" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="request_url" property="requestUrl" jdbcType="VARCHAR" />
+    <result column="request_method" property="requestMethod" jdbcType="VARCHAR" />
+    <result column="request_time" property="requestTime" jdbcType="INTEGER" />
+    <result column="request_content" property="requestContent" jdbcType="VARCHAR" />
+    <result column="request_params" property="requestParams" jdbcType="VARCHAR" />
+    <result column="request_ip" property="requestIp" jdbcType="VARCHAR" />
+    <result column="request_clientid" property="requestClientid" jdbcType="VARCHAR" />
+    <result column="request_appid" property="requestAppid" jdbcType="VARCHAR" />
+    <result column="response_code" property="responseCode" jdbcType="VARCHAR" />
+    <result column="response_time" property="responseTime" jdbcType="INTEGER" />
+    <result column="response_datatype" property="responseDatatype" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ihavecar.payment.entity.SysTttplogs" extends="BaseResultMap" >
+    <result column="response_content" property="responseContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, request_url, request_method, request_time, request_content, request_params, request_ip, 
+    request_clientid, request_appid, response_code, response_time, response_datatype, 
+    del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    response_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_httplogs
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from sys_httplogs
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.SysTttplogs" >
+    insert into sys_httplogs (id, request_url, request_method, 
+      request_time, request_content, request_params, 
+      request_ip, request_clientid, request_appid, 
+      response_code, response_time, response_datatype, 
+      del_flag, response_content)
+    values (#{id,jdbcType=BIGINT}, #{requestUrl,jdbcType=VARCHAR}, #{requestMethod,jdbcType=VARCHAR}, 
+      #{requestTime,jdbcType=INTEGER}, #{requestContent,jdbcType=VARCHAR}, #{requestParams,jdbcType=VARCHAR}, 
+      #{requestIp,jdbcType=VARCHAR}, #{requestClientid,jdbcType=VARCHAR}, #{requestAppid,jdbcType=VARCHAR}, 
+      #{responseCode,jdbcType=VARCHAR}, #{responseTime,jdbcType=INTEGER}, #{responseDatatype,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR}, #{responseContent,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.SysTttplogs" >
+    insert into sys_httplogs
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="requestUrl != null" >
+        request_url,
+      </if>
+      <if test="requestMethod != null" >
+        request_method,
+      </if>
+      <if test="requestTime != null" >
+        request_time,
+      </if>
+      <if test="requestContent != null" >
+        request_content,
+      </if>
+      <if test="requestParams != null" >
+        request_params,
+      </if>
+      <if test="requestIp != null" >
+        request_ip,
+      </if>
+      <if test="requestClientid != null" >
+        request_clientid,
+      </if>
+      <if test="requestAppid != null" >
+        request_appid,
+      </if>
+      <if test="responseCode != null" >
+        response_code,
+      </if>
+      <if test="responseTime != null" >
+        response_time,
+      </if>
+      <if test="responseDatatype != null" >
+        response_datatype,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="responseContent != null" >
+        response_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="requestUrl != null" >
+        #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null" >
+        #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        #{requestTime,jdbcType=INTEGER},
+      </if>
+      <if test="requestContent != null" >
+        #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParams != null" >
+        #{requestParams,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="requestClientid != null" >
+        #{requestClientid,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAppid != null" >
+        #{requestAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null" >
+        #{responseTime,jdbcType=INTEGER},
+      </if>
+      <if test="responseDatatype != null" >
+        #{responseDatatype,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="responseContent != null" >
+        #{responseContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.SysTttplogs" >
+    update sys_httplogs
+    <set >
+      <if test="requestUrl != null" >
+        request_url = #{requestUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="requestMethod != null" >
+        request_method = #{requestMethod,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        request_time = #{requestTime,jdbcType=INTEGER},
+      </if>
+      <if test="requestContent != null" >
+        request_content = #{requestContent,jdbcType=VARCHAR},
+      </if>
+      <if test="requestParams != null" >
+        request_params = #{requestParams,jdbcType=VARCHAR},
+      </if>
+      <if test="requestIp != null" >
+        request_ip = #{requestIp,jdbcType=VARCHAR},
+      </if>
+      <if test="requestClientid != null" >
+        request_clientid = #{requestClientid,jdbcType=VARCHAR},
+      </if>
+      <if test="requestAppid != null" >
+        request_appid = #{requestAppid,jdbcType=VARCHAR},
+      </if>
+      <if test="responseCode != null" >
+        response_code = #{responseCode,jdbcType=VARCHAR},
+      </if>
+      <if test="responseTime != null" >
+        response_time = #{responseTime,jdbcType=INTEGER},
+      </if>
+      <if test="responseDatatype != null" >
+        response_datatype = #{responseDatatype,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="responseContent != null" >
+        response_content = #{responseContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ihavecar.payment.entity.SysTttplogs" >
+    update sys_httplogs
+    set request_url = #{requestUrl,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=VARCHAR},
+      request_time = #{requestTime,jdbcType=INTEGER},
+      request_content = #{requestContent,jdbcType=VARCHAR},
+      request_params = #{requestParams,jdbcType=VARCHAR},
+      request_ip = #{requestIp,jdbcType=VARCHAR},
+      request_clientid = #{requestClientid,jdbcType=VARCHAR},
+      request_appid = #{requestAppid,jdbcType=VARCHAR},
+      response_code = #{responseCode,jdbcType=VARCHAR},
+      response_time = #{responseTime,jdbcType=INTEGER},
+      response_datatype = #{responseDatatype,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      response_content = #{responseContent,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.SysTttplogs" >
+    update sys_httplogs
+    set request_url = #{requestUrl,jdbcType=VARCHAR},
+      request_method = #{requestMethod,jdbcType=VARCHAR},
+      request_time = #{requestTime,jdbcType=INTEGER},
+      request_content = #{requestContent,jdbcType=VARCHAR},
+      request_params = #{requestParams,jdbcType=VARCHAR},
+      request_ip = #{requestIp,jdbcType=VARCHAR},
+      request_clientid = #{requestClientid,jdbcType=VARCHAR},
+      request_appid = #{requestAppid,jdbcType=VARCHAR},
+      response_code = #{responseCode,jdbcType=VARCHAR},
+      response_time = #{responseTime,jdbcType=INTEGER},
+      response_datatype = #{responseDatatype,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

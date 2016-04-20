@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.PayOrderMergeMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.PayOrderMerge" >
+    <id column="merge_order_no" property="mergeOrderNo" jdbcType="VARCHAR" />
+    <id column="pay_order_no" property="payOrderNo" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="order_create_by" property="orderCreateBy" jdbcType="INTEGER" />
+    <result column="order_total_amount" property="orderTotalAmount" jdbcType="DECIMAL" />
+    <result column="order_actual_amount" property="orderActualAmount" jdbcType="DECIMAL" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="preference_amount" property="preferenceAmount" jdbcType="DECIMAL" />
+    <result column="asyn_return_url" property="asynReturnUrl" jdbcType="VARCHAR" />
+    <result column="syn_return_url" property="synReturnUrl" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="order_title" property="orderTitle" jdbcType="VARCHAR" />
+    <result column="order_desc" property="orderDesc" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="INTEGER" />
+    <result column="order_ip" property="orderIp" jdbcType="VARCHAR" />
+    <result column="order_by" property="orderBy" jdbcType="INTEGER" />
+    <result column="pay_account" property="payAccount" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    merge_order_no, pay_order_no, id, order_create_by, order_total_amount, order_actual_amount, 
+    order_status, preference_amount, asyn_return_url, syn_return_url, add_time, pay_type, 
+    order_title, order_desc, update_time, order_ip, order_by, pay_account, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ihavecar.payment.entity.PayOrderMergeKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_order_merge
+    where merge_order_no = #{mergeOrderNo,jdbcType=VARCHAR}
+      and pay_order_no = #{payOrderNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayOrderMergeKey" >
+    delete from pay_order_merge
+    where merge_order_no = #{mergeOrderNo,jdbcType=VARCHAR}
+      and pay_order_no = #{payOrderNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.PayOrderMerge" >
+    insert into pay_order_merge (merge_order_no, pay_order_no, id, 
+      order_create_by, order_total_amount, order_actual_amount, 
+      order_status, preference_amount, asyn_return_url, 
+      syn_return_url, add_time, pay_type, 
+      order_title, order_desc, update_time, 
+      order_ip, order_by, pay_account, 
+      del_flag)
+    values (#{mergeOrderNo,jdbcType=VARCHAR}, #{payOrderNo,jdbcType=VARCHAR}, #{id,jdbcType=BIGINT}, 
+      #{orderCreateBy,jdbcType=INTEGER}, #{orderTotalAmount,jdbcType=DECIMAL}, #{orderActualAmount,jdbcType=DECIMAL}, 
+      #{orderStatus,jdbcType=INTEGER}, #{preferenceAmount,jdbcType=DECIMAL}, #{asynReturnUrl,jdbcType=VARCHAR}, 
+      #{synReturnUrl,jdbcType=VARCHAR}, #{addTime,jdbcType=INTEGER}, #{payType,jdbcType=INTEGER}, 
+      #{orderTitle,jdbcType=VARCHAR}, #{orderDesc,jdbcType=VARCHAR}, #{updateTime,jdbcType=INTEGER}, 
+      #{orderIp,jdbcType=VARCHAR}, #{orderBy,jdbcType=INTEGER}, #{payAccount,jdbcType=VARCHAR}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.PayOrderMerge" >
+    insert into pay_order_merge
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="mergeOrderNo != null" >
+        merge_order_no,
+      </if>
+      <if test="payOrderNo != null" >
+        pay_order_no,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderCreateBy != null" >
+        order_create_by,
+      </if>
+      <if test="orderTotalAmount != null" >
+        order_total_amount,
+      </if>
+      <if test="orderActualAmount != null" >
+        order_actual_amount,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="preferenceAmount != null" >
+        preference_amount,
+      </if>
+      <if test="asynReturnUrl != null" >
+        asyn_return_url,
+      </if>
+      <if test="synReturnUrl != null" >
+        syn_return_url,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="orderTitle != null" >
+        order_title,
+      </if>
+      <if test="orderDesc != null" >
+        order_desc,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="orderIp != null" >
+        order_ip,
+      </if>
+      <if test="orderBy != null" >
+        order_by,
+      </if>
+      <if test="payAccount != null" >
+        pay_account,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="mergeOrderNo != null" >
+        #{mergeOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderNo != null" >
+        #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderCreateBy != null" >
+        #{orderCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalAmount != null" >
+        #{orderTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderActualAmount != null" >
+        #{orderActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="preferenceAmount != null" >
+        #{preferenceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="asynReturnUrl != null" >
+        #{asynReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="synReturnUrl != null" >
+        #{synReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderTitle != null" >
+        #{orderTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDesc != null" >
+        #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderIp != null" >
+        #{orderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null" >
+        #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="payAccount != null" >
+        #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.PayOrderMerge" >
+    update pay_order_merge
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="orderCreateBy != null" >
+        order_create_by = #{orderCreateBy,jdbcType=INTEGER},
+      </if>
+      <if test="orderTotalAmount != null" >
+        order_total_amount = #{orderTotalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderActualAmount != null" >
+        order_actual_amount = #{orderActualAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="preferenceAmount != null" >
+        preference_amount = #{preferenceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="asynReturnUrl != null" >
+        asyn_return_url = #{asynReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="synReturnUrl != null" >
+        syn_return_url = #{synReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="orderTitle != null" >
+        order_title = #{orderTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="orderDesc != null" >
+        order_desc = #{orderDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=INTEGER},
+      </if>
+      <if test="orderIp != null" >
+        order_ip = #{orderIp,jdbcType=VARCHAR},
+      </if>
+      <if test="orderBy != null" >
+        order_by = #{orderBy,jdbcType=INTEGER},
+      </if>
+      <if test="payAccount != null" >
+        pay_account = #{payAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where merge_order_no = #{mergeOrderNo,jdbcType=VARCHAR}
+      and pay_order_no = #{payOrderNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayOrderMerge" >
+    update pay_order_merge
+    set id = #{id,jdbcType=BIGINT},
+      order_create_by = #{orderCreateBy,jdbcType=INTEGER},
+      order_total_amount = #{orderTotalAmount,jdbcType=DECIMAL},
+      order_actual_amount = #{orderActualAmount,jdbcType=DECIMAL},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      preference_amount = #{preferenceAmount,jdbcType=DECIMAL},
+      asyn_return_url = #{asynReturnUrl,jdbcType=VARCHAR},
+      syn_return_url = #{synReturnUrl,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      order_title = #{orderTitle,jdbcType=VARCHAR},
+      order_desc = #{orderDesc,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=INTEGER},
+      order_ip = #{orderIp,jdbcType=VARCHAR},
+      order_by = #{orderBy,jdbcType=INTEGER},
+      pay_account = #{payAccount,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where merge_order_no = #{mergeOrderNo,jdbcType=VARCHAR}
+      and pay_order_no = #{payOrderNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

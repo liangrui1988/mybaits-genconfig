@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.PayRefundProcessMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.PayRefundProcess" >
+    <id column="refund_pay_no" property="refundPayNo" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="BIGINT" />
+    <result column="curr_status" property="currStatus" jdbcType="INTEGER" />
+    <result column="pre_status" property="preStatus" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.ihavecar.payment.entity.PayRefundProcess" extends="BaseResultMap" >
+    <result column="remarks" property="remarks" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    refund_pay_no, id, curr_status, pre_status, create_by, create_time, del_flag
+  </sql>
+  <sql id="Blob_Column_List" >
+    remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from pay_refund_process
+    where refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from pay_refund_process
+    where refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.PayRefundProcess" >
+    insert into pay_refund_process (refund_pay_no, id, curr_status, 
+      pre_status, create_by, create_time, 
+      del_flag, remarks)
+    values (#{refundPayNo,jdbcType=VARCHAR}, #{id,jdbcType=BIGINT}, #{currStatus,jdbcType=INTEGER}, 
+      #{preStatus,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{delFlag,jdbcType=CHAR}, #{remarks,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.PayRefundProcess" >
+    insert into pay_refund_process
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="refundPayNo != null" >
+        refund_pay_no,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="currStatus != null" >
+        curr_status,
+      </if>
+      <if test="preStatus != null" >
+        pre_status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="refundPayNo != null" >
+        #{refundPayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="currStatus != null" >
+        #{currStatus,jdbcType=INTEGER},
+      </if>
+      <if test="preStatus != null" >
+        #{preStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.PayRefundProcess" >
+    update pay_refund_process
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=BIGINT},
+      </if>
+      <if test="currStatus != null" >
+        curr_status = #{currStatus,jdbcType=INTEGER},
+      </if>
+      <if test="preStatus != null" >
+        pre_status = #{preStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ihavecar.payment.entity.PayRefundProcess" >
+    update pay_refund_process
+    set id = #{id,jdbcType=BIGINT},
+      curr_status = #{currStatus,jdbcType=INTEGER},
+      pre_status = #{preStatus,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR},
+      remarks = #{remarks,jdbcType=LONGVARCHAR}
+    where refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayRefundProcess" >
+    update pay_refund_process
+    set id = #{id,jdbcType=BIGINT},
+      curr_status = #{currStatus,jdbcType=INTEGER},
+      pre_status = #{preStatus,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

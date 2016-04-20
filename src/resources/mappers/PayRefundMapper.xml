@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.PayRefundMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.PayRefund" >
+    <id column="refund_out_no" property="refundOutNo" jdbcType="VARCHAR" />
+    <id column="refund_pay_no" property="refundPayNo" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="refund_amount" property="refundAmount" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="refund_by" property="refundBy" jdbcType="INTEGER" />
+    <result column="syn_return_url" property="synReturnUrl" jdbcType="VARCHAR" />
+    <result column="asyn_return_url" property="asynReturnUrl" jdbcType="VARCHAR" />
+    <result column="refund_type" property="refundType" jdbcType="INTEGER" />
+    <result column="refund_title" property="refundTitle" jdbcType="VARCHAR" />
+    <result column="refund_desc" property="refundDesc" jdbcType="VARCHAR" />
+    <result column="refund_ip" property="refundIp" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    refund_out_no, refund_pay_no, id, refund_amount, status, refund_by, syn_return_url, 
+    asyn_return_url, refund_type, refund_title, refund_desc, refund_ip, add_time, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ihavecar.payment.entity.PayRefundKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from pay_refund
+    where refund_out_no = #{refundOutNo,jdbcType=VARCHAR}
+      and refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayRefundKey" >
+    delete from pay_refund
+    where refund_out_no = #{refundOutNo,jdbcType=VARCHAR}
+      and refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.PayRefund" >
+    insert into pay_refund (refund_out_no, refund_pay_no, id, 
+      refund_amount, status, refund_by, 
+      syn_return_url, asyn_return_url, refund_type, 
+      refund_title, refund_desc, refund_ip, 
+      add_time, del_flag)
+    values (#{refundOutNo,jdbcType=VARCHAR}, #{refundPayNo,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, 
+      #{refundAmount,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{refundBy,jdbcType=INTEGER}, 
+      #{synReturnUrl,jdbcType=VARCHAR}, #{asynReturnUrl,jdbcType=VARCHAR}, #{refundType,jdbcType=INTEGER}, 
+      #{refundTitle,jdbcType=VARCHAR}, #{refundDesc,jdbcType=VARCHAR}, #{refundIp,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.PayRefund" >
+    insert into pay_refund
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="refundOutNo != null" >
+        refund_out_no,
+      </if>
+      <if test="refundPayNo != null" >
+        refund_pay_no,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="refundBy != null" >
+        refund_by,
+      </if>
+      <if test="synReturnUrl != null" >
+        syn_return_url,
+      </if>
+      <if test="asynReturnUrl != null" >
+        asyn_return_url,
+      </if>
+      <if test="refundType != null" >
+        refund_type,
+      </if>
+      <if test="refundTitle != null" >
+        refund_title,
+      </if>
+      <if test="refundDesc != null" >
+        refund_desc,
+      </if>
+      <if test="refundIp != null" >
+        refund_ip,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="refundOutNo != null" >
+        #{refundOutNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundPayNo != null" >
+        #{refundPayNo,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmount != null" >
+        #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="refundBy != null" >
+        #{refundBy,jdbcType=INTEGER},
+      </if>
+      <if test="synReturnUrl != null" >
+        #{synReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="asynReturnUrl != null" >
+        #{asynReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refundType != null" >
+        #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="refundTitle != null" >
+        #{refundTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDesc != null" >
+        #{refundDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="refundIp != null" >
+        #{refundIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.PayRefund" >
+    update pay_refund
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="refundAmount != null" >
+        refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="refundBy != null" >
+        refund_by = #{refundBy,jdbcType=INTEGER},
+      </if>
+      <if test="synReturnUrl != null" >
+        syn_return_url = #{synReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="asynReturnUrl != null" >
+        asyn_return_url = #{asynReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="refundType != null" >
+        refund_type = #{refundType,jdbcType=INTEGER},
+      </if>
+      <if test="refundTitle != null" >
+        refund_title = #{refundTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="refundDesc != null" >
+        refund_desc = #{refundDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="refundIp != null" >
+        refund_ip = #{refundIp,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where refund_out_no = #{refundOutNo,jdbcType=VARCHAR}
+      and refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.PayRefund" >
+    update pay_refund
+    set id = #{id,jdbcType=INTEGER},
+      refund_amount = #{refundAmount,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      refund_by = #{refundBy,jdbcType=INTEGER},
+      syn_return_url = #{synReturnUrl,jdbcType=VARCHAR},
+      asyn_return_url = #{asynReturnUrl,jdbcType=VARCHAR},
+      refund_type = #{refundType,jdbcType=INTEGER},
+      refund_title = #{refundTitle,jdbcType=VARCHAR},
+      refund_desc = #{refundDesc,jdbcType=VARCHAR},
+      refund_ip = #{refundIp,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where refund_out_no = #{refundOutNo,jdbcType=VARCHAR}
+      and refund_pay_no = #{refundPayNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ihavecar.payment.mapper.SysClientsMapper" >
+  <resultMap id="BaseResultMap" type="com.ihavecar.payment.entity.SysClients" >
+    <id column="client_id" property="clientId" jdbcType="VARCHAR" />
+    <id column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="app_key" property="appKey" jdbcType="VARCHAR" />
+    <result column="add_time" property="addTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    client_id, app_id, id, app_key, add_time, status, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.ihavecar.payment.entity.SysClientsKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_clients
+    where client_id = #{clientId,jdbcType=VARCHAR}
+      and app_id = #{appId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.ihavecar.payment.entity.SysClientsKey" >
+    delete from sys_clients
+    where client_id = #{clientId,jdbcType=VARCHAR}
+      and app_id = #{appId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ihavecar.payment.entity.SysClients" >
+    insert into sys_clients (client_id, app_id, id, 
+      app_key, add_time, status, 
+      del_flag)
+    values (#{clientId,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, 
+      #{appKey,jdbcType=VARCHAR}, #{addTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ihavecar.payment.entity.SysClients" >
+    insert into sys_clients
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clientId != null" >
+        client_id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appKey != null" >
+        app_key,
+      </if>
+      <if test="addTime != null" >
+        add_time,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clientId != null" >
+        #{clientId,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appKey != null" >
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ihavecar.payment.entity.SysClients" >
+    update sys_clients
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appKey != null" >
+        app_key = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null" >
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where client_id = #{clientId,jdbcType=VARCHAR}
+      and app_id = #{appId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ihavecar.payment.entity.SysClients" >
+    update sys_clients
+    set id = #{id,jdbcType=INTEGER},
+      app_key = #{appKey,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where client_id = #{clientId,jdbcType=VARCHAR}
+      and app_id = #{appId,jdbcType=VARCHAR}
+  </update>
+</mapper>
